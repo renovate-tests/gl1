@@ -34,7 +34,7 @@ variables:
 hadolint:
     stage: compliance-tests
     <<: *executor-docker
-    image: hadolint/hadolint:latest
+    image: hadolint/hadolint:latest@sha256:9554272001c593854d32813bcae15473628da39f28b2faf2cf05913d7e1198ab
     script:
         - hadolint Dockerfile
 
@@ -51,9 +51,9 @@ build:
 sast:container:
     stage: sast
     <<: *executor-docker-in-docker
-    image: docker:latest
+    image: docker:latest@sha256:8879659d45d4b2115f9b67ec18ca29712ad79dff889763e7b8d3377d4373968b
     services:
-        - docker:dind
+        - docker:dind@sha256:54ee65f93342c4a50b7f41d384bf61d5de8fb39240841319f963ce9ca41b8183
     <<: *docker-login
     script:
         - *build-image
@@ -73,9 +73,9 @@ sast:container:
 constainer-structure-test:
     stage: unit-tests
     <<: *executor-docker-in-docker
-    image: docker:latest
+    image: docker:latest@sha256:8879659d45d4b2115f9b67ec18ca29712ad79dff889763e7b8d3377d4373968b
     services:
-        - docker:dind
+        - docker:dind@sha256:54ee65f93342c4a50b7f41d384bf61d5de8fb39240841319f963ce9ca41b8183
     <<: *docker-login
     script:
         - *build-image
