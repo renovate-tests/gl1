@@ -53,7 +53,7 @@ sast:container:
     <<: *executor-docker-in-docker
     image: docker:latest
     services:
-        - docker:dind
+        - docker:dind@sha256:54ee65f93342c4a50b7f41d384bf61d5de8fb39240841319f963ce9ca41b8183
     <<: *docker-login
     script:
         - *build-image
